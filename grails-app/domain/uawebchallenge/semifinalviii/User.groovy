@@ -2,7 +2,7 @@ package uawebchallenge.semifinalviii
 
 class User {
 
-    String identifier
+    String identifier;
     String name
     String description
     String email
@@ -20,13 +20,14 @@ class User {
 
     static mapping = {
         version false
-        identifier column: identifier, index: 'User_identifier_Idx'
-        name column: name
-        description column: description
-        email column: email
-        dateCreated column: datecreated
-        dateMofified column: datemofified
+        identifier column: 'identifier', index: 'User_identifier_Idx'
+        name column: 'name'
+        description column: 'description'
+        email column: 'email'
+        dateCreated column: 'date_created'
+        dateMofified column: 'date_modified'
     }
+
 }
 
 
