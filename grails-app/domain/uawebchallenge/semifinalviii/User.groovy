@@ -2,9 +2,9 @@ package uawebchallenge.semifinalviii
 
 class User {
 
-    public static final  String ACTIVE = 1
-    public static final  String WAITING_CONFIRMATION_EMAIL = 1
-    public static final  String BLOCKED = 3
+    public static final  String STATUS_ACTIVE = 1
+    public static final  String STATUS_WAITING_CONFIRMATION_EMAIL = 1
+    public static final  String STATUS_BLOCKED = 3
 
     String name
     String description
