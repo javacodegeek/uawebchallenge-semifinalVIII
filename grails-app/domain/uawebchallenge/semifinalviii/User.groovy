@@ -2,16 +2,18 @@ package uawebchallenge.semifinalviii
 
 class User {
 
-    public static final  String STATUS_ACTIVE = 1
-    public static final  String STATUS_WAITING_CONFIRMATION_EMAIL = 1
-    public static final  String STATUS_BLOCKED = 3
+    public static final  Integer STATUS_ACTIVE = 1
+    public static final  Integer STATUS_WAITING_CONFIRMATION_EMAIL = 1
+    public static final  Integer STATUS_BLOCKED = 3
+    public static final  Integer STATUS_DECLINE_CONFIRMATION_EMAIL = 4
+
 
     String name
     String description
     String email
     Date dateCreated = new Date()
     Date dateMofified = new Date()
-    String status
+    Integer status
 
     static constraints = {
         name(nullable: false, blank: false)
@@ -19,7 +21,7 @@ class User {
         email(nullable: false, blank: false, unique: true)
         dateCreated(nullable: false)
         dateMofified(nullable: false)
-        name(nullable: false, blank: false)
+        status(nullable: false, blank: false)
 
     }
 
