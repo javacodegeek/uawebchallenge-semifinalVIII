@@ -16,7 +16,7 @@ class UrlMappings {
             action = [GET: "list", POST: "save"]
         }
 
-        name restEntity: "/$controller/$id"(parseRequest: true) {
+        name restEntity: "/api/$apiVersion/$controller/$id"(parseRequest: true) {
             action = [GET: "show", PUT: "update", POST: "update", DELETE: "delete"]
             constraints {
                 id matches: /\d+/
