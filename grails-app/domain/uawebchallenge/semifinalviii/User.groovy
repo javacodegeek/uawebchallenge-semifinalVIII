@@ -2,11 +2,16 @@ package uawebchallenge.semifinalviii
 
 class User {
 
+    public static final  String ACTIVE = 1
+    public static final  String WAITING_CONFIRMATION_EMAIL = 1
+    public static final  String BLOCKED = 3
+
     String name
     String description
     String email
     Date dateCreated = new Date()
     Date dateMofified = new Date()
+    String status
 
     static constraints = {
         name(nullable: false, blank: false)
@@ -14,6 +19,8 @@ class User {
         email(nullable: false, blank: false, unique: true)
         dateCreated(nullable: false)
         dateMofified(nullable: false)
+        name(nullable: false, blank: false)
+
     }
 
     static mapping = {
@@ -23,6 +30,8 @@ class User {
         email column: 'email'
         dateCreated column: 'date_created'
         dateMofified column: 'date_modified'
+        status column: 'status'
+
     }
 
 }
