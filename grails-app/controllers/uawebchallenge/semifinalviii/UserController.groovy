@@ -17,7 +17,7 @@ class UserController {
         }
     }
 
-    def save(){
+    def save() {
         try {
             def params = request.JSON
             if(params.name && params.email && params.password) {
@@ -38,5 +38,20 @@ class UserController {
             render(status: 500, contentType: "text/json", text: [status: "error", message: "Some internal error happened on server!"])
         }
 
+    }
+
+    def show() {
+        try {
+            def user = User.get(params.id)
+            if(user){
+                render(status: 200, contentType: "text/json", text: [status: "success", data: user] as JSON)
+            } else {
+                render(status: 404, contentType: "text/json", text: [status: "error", message: "User not fount by id!"] as JSON)
+
+            }
+
+        }catch(Exception e) {
+            render(status: 500, contentType: "text/json", text: [status: "error", message: "Some internal error happened on server!"])
+        }
     }
 }
