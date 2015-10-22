@@ -47,11 +47,27 @@ class UserController {
                 render(status: 200, contentType: "text/json", text: [status: "success", data: user] as JSON)
             } else {
                 render(status: 404, contentType: "text/json", text: [status: "error", message: "User not fount by id!"] as JSON)
-
             }
 
         }catch(Exception e) {
             render(status: 500, contentType: "text/json", text: [status: "error", message: "Some internal error happened on server!"])
         }
+    }
+
+    def update() {
+         try {
+             def user = User.get(params.id)
+             if(user){
+                 if (request.JSON.name){ user.name = request.JSON.name}
+                 if (request.JSON.email){ user.name = request.JSON.email}
+                 if (request.JSON.password){ user.name = request.JSON.password}
+                    user.save(flush: true, failOnError: true)
+                 render(status: 202, contentType: "text/json", text: [status: "success", data: user] as JSON)
+             } else {
+                 render(status: 404, contentType: "text/json", text: [status: "error", message: "User not fount by id!"] as JSON)
+             }
+         }catch(Exception e) {
+             render(status: 500, contentType: "text/json", text: [status: "error", message: "Some internal error happened on server!"])
+         }
     }
 }
