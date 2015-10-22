@@ -61,6 +61,7 @@ class UserController {
                  if (request.JSON.name){ user.name = request.JSON.name}
                  if (request.JSON.email){ user.name = request.JSON.email}
                  if (request.JSON.password){ user.name = request.JSON.password}
+                 user.dateMofified = new Date()
                     user.save(flush: true, failOnError: true)
                  render(status: 202, contentType: "text/json", text: [status: "success", data: user, message: "User updated!"] as JSON)
              } else {
