@@ -89,8 +89,11 @@ environments {
     development {
         grails.logging.jul.usebridge = true
         mailgun{
+            userName = "api"
             secretApiKey = "key-d21cd9378221d61dae83b2dbcd1e33dc"
             publicApiKey = "pubkey-faed73d74904281dc5eb912ab1e86de3"
+            baseUrl = "https://api.mailgun.net/v3"
+            domain = "sandbox4187d4ec582545efad3ffd0949874165.mailgun.org"
         }
     }
     production {

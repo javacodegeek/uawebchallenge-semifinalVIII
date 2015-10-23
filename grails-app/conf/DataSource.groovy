@@ -14,12 +14,29 @@ hibernate {
     flush.mode = 'manual' // OSIV session flush mode outside of transactional context
 }
 
+
 // environment specific settings
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            driverClassName = "org.postgresql.Driver"
+            dialect = "org.hibernate.dialect.PostgreSQLDialect"
+            pooled = true
+            type = "com.mchange.v2.c3p0.ComboPooledDataSource"
+            properties {
+                maxActive = -1
+                minEvictableIdleTimeMillis=1800000
+                timeBetweenEvictionRunsMillis=1800000
+                numTestsPerEvictionRun=3
+                testOnBorrow=true
+                testWhileIdle=true
+                testOnReturn=true
+                validationQuery="SELECT 1"
+            }
+            username = 'postgres'
+            password = '123'
+            url = "jdbc:postgresql://localhost:5432/uwcua"
+            dbCreate = "create-drop"
         }
     }
     test {
