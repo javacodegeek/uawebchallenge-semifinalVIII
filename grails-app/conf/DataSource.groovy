@@ -39,6 +39,28 @@ environments {
             dbCreate = "create-drop"
         }
     }
+    heroku {
+        dataSource {
+            driverClassName = "org.postgresql.Driver"
+            dialect = "org.hibernate.dialect.PostgreSQLDialect"
+            pooled = true
+            type = "com.mchange.v2.c3p0.ComboPooledDataSource"
+            properties {
+                maxActive = -1
+                minEvictableIdleTimeMillis=1800000
+                timeBetweenEvictionRunsMillis=1800000
+                numTestsPerEvictionRun=3
+                testOnBorrow=true
+                testWhileIdle=true
+                testOnReturn=true
+                validationQuery="SELECT 1"
+            }
+            username = 'tzytpqwyizupdz'
+            password = '1IR_RsvRpHejdvkT0ORXGsCPAt'
+            url = "postgres://tzytpqwyizupdz:1IR_RsvRpHejdvkT0ORXGsCPAt@ec2-54-225-194-162.compute-1.amazonaws.com:5432/dcia6nepcslpg5"
+            dbCreate = "create-drop"
+        }
+    }
     test {
         dataSource {
             dbCreate = "update"

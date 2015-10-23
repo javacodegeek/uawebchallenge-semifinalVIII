@@ -100,6 +100,20 @@ environments {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
+    heroku {
+        grails.logging.jul.usebridge = false
+        grails.logging.jul.usebridge = true
+        mailgun{
+            userName = "api"
+            secretApiKey = "key-d21cd9378221d61dae83b2dbcd1e33dc"
+            publicApiKey = "pubkey-faed73d74904281dc5eb912ab1e86de3"
+            baseUrl = "https://api.mailgun.net/v3"
+            domain = "sandbox4187d4ec582545efad3ffd0949874165.mailgun.org"
+        }
+        domain = "https://hidden-ridge-5214.herokuapp.com"
+    }
+
+
 }
 
 // log4j configuration
