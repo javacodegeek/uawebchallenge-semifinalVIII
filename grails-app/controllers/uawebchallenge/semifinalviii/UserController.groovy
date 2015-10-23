@@ -25,7 +25,7 @@ class UserController {
             if(params.name && params.email && params.password) {
                 def isExist = User.findByEmail(params.email)
                 if (!isExist){
-                    def user = new User (name: params.name, email: params.email, password: params.password, status: User.STATUS_WAITING_CONFIRMATION_EMAIL, description: params.description).save(flush: true, failOnError: true)
+                    def user = new User (name: params.name, email: params.email, password: params.password.encodeAsMD5().toString(), status: User.STATUS_WAITING_CONFIRMATION_EMAIL, description: params.description).save(flush: true, failOnError: true)
                     registrationService.create(user.id.toInteger(), user.email, user.name)
                     render(status: 201, contentType: "text/json", text: [status: "success", data: user, message: ""] as JSON)
                 }else {
