@@ -26,6 +26,7 @@ class User {
     }
 
     static mapping = {
+        table "applicationuser"
         version false
         name column: 'name', index: 'User_name_Idx'
         description column: 'description'

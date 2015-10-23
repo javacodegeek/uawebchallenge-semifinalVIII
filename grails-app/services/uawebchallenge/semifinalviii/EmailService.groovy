@@ -8,7 +8,7 @@ class EmailService {
 
    def send(String from,  String to, String subject, String text) {
        try {
-           ['bash', '-c', "curl -s --user 'api:${CH.config.mailgun.secretApiKey}' ${CH.config.mailgun.baseUrl}/${CH.config.mailgun.domain}/messages -F from=$from -F to=$to -F subject=$subject -F text=$text"].execute()
+           ['bash', '-c', "curl -s --user 'api:${CH.config.mailgun.secretApiKey}' ${CH.config.mailgun.baseUrl}/${CH.config.mailgun.domain}/messages -F from='$from' -F to='$to'  -F subject='$subject' -F text='$text' "].execute().text
            return true
        }catch(Exception e){
             return false

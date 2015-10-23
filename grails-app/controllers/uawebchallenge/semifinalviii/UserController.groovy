@@ -5,6 +5,8 @@ import grails.converters.JSON
 
 class UserController {
 
+    RegistrationService registrationService
+
     def index() { }
 
 
@@ -21,11 +23,10 @@ class UserController {
         try {
             def params = request.JSON
             if(params.name && params.email && params.password) {
-
                 def isExist = User.findByEmail(params.email)
-
                 if (!isExist){
-                    def user = new User (name: params.name, email: params.email, password: params.password).save(flush: true, failOnError: true)
+                    def user = new User (name: params.name, email: params.email, password: params.password, status: User.STATUS_WAITING_CONFIRMATION_EMAIL, description: params.description).save(flush: true, failOnError: true)
+                    registrationService.create(user.id.toInteger(), user.email, user.name)
                     render(status: 201, contentType: "text/json", text: [status: "success", data: user, message: ""] as JSON)
                 }else {
                     render(status: 409, contentType: "text/json", text: [status: "error", data: "", message: "User with this email already exists!"] as JSON)
@@ -35,7 +36,7 @@ class UserController {
                 render(status: 400, contentType: "text/json", text: [status: "error", data: "", message: "Not enough parameters!"] as JSON)
             }
         }catch(Exception e) {
-            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
+            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"] as JSON)
         }
 
     }
@@ -61,6 +62,7 @@ class UserController {
                  if (request.JSON.name){ user.name = request.JSON.name}
                  if (request.JSON.email){ user.name = request.JSON.email}
                  if (request.JSON.password){ user.name = request.JSON.password}
+                 if (request.JSON.description){ user.name = request.JSON.description}
                  if (request.JSON.status){ user.name = request.JSON.status}
                   user.dateMofified = new Date()
                     user.save(flush: true, failOnError: true)
@@ -86,4 +88,5 @@ class UserController {
             render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
         }
     }
+
 }
