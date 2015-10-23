@@ -22,7 +22,10 @@ class UrlMappings {
                 id matches: /\d+/
             }
         }
- n
+
+
+        "/api/$apiVersion/signin"(controller: "user", action: "signin")
+
 
 	}
 }

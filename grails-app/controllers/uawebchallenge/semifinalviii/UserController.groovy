@@ -6,6 +6,7 @@ import grails.converters.JSON
 class UserController {
 
     RegistrationService registrationService
+    UserService userService
 
     def index() { }
 
@@ -84,6 +85,26 @@ class UserController {
             } else {
                 render(status: 404, contentType: "text/json", text: [status: "error", data:"", message: "User not fount by id!"] as JSON)
             }
+        }catch(Exception e) {
+            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
+        }
+    }
+
+    def signin() {
+        try {
+            def params = request.JSON
+            if(params.email&&params.password){
+                def signinUser = userService.signin(params.email, params.password)
+                if(signinUser) {
+                    render(status: 200, contentType: "text/json", text: [status: "success", data: "", message: "User signin in system!"] as JSON)
+                }else{
+                    render(status: 403, contentType: "text/json", text: [status: "success", data: "", message: "Wrong password or email!"] as JSON)
+
+                }
+            }else{
+                render(status: 400, contentType: "text/json", text: [status: "error", data: "", message: "Not enough parameters!"] as JSON)
+            }
+
         }catch(Exception e) {
             render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
         }
