@@ -96,6 +96,7 @@ environments {
             domain = "sandbox4187d4ec582545efad3ffd0949874165.mailgun.org"
         }
     }
+
     production {
         grails.logging.jul.usebridge = false
         grails.logging.jul.usebridge = true
