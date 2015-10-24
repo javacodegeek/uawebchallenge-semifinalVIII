@@ -11,6 +11,7 @@ class User {
     String name
     String description
     String email
+    String password
     Date dateCreated = new Date()
     Date dateMofified = new Date()
     Integer status
@@ -19,6 +20,7 @@ class User {
         name(nullable: false, blank: false)
         description(nullable: true, blank: true)
         email(nullable: false, blank: false, unique: true)
+        password(nullable: false, blank: false)
         dateCreated(nullable: false)
         dateMofified(nullable: false)
         status(nullable: false, blank: false)
@@ -31,6 +33,7 @@ class User {
         name column: 'name', index: 'User_name_Idx'
         description column: 'description'
         email column: 'email'
+        password column: 'password'
         dateCreated column: 'date_created'
         dateMofified column: 'date_modified'
         status column: 'status'

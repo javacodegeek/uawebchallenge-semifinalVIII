@@ -93,12 +93,13 @@ class UserController {
     def signin() {
         try {
             def params = request.JSON
-            if(params.email&&params.password){
+
+            if(params.email && params.password){
                 def signinUser = userService.signin(params.email, params.password)
                 if(signinUser) {
                     render(status: 200, contentType: "text/json", text: [status: "success", data: "", message: "User signin in system!"] as JSON)
                 }else{
-                    render(status: 403, contentType: "text/json", text: [status: "success", data: "", message: "Wrong password or email!"] as JSON)
+                    render(status: 403, contentType: "text/json", text: [status: "error", data: "", message: "Wrong password or email!"] as JSON)
 
                 }
             }else{
