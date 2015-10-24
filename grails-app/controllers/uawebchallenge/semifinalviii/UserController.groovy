@@ -103,6 +103,9 @@ class UserController {
             if(params.email && params.password){
                 def signinUser = userService.signin(params.email, params.password)
                 if(signinUser) {
+                    session.idKey = new Date().getTime().encodeAsMD5().toString()
+                    session.user = signinUser
+
                     render(status: 200, contentType: "text/json", text: [status: "success", data: "", message: "User signin in system!"] as JSON)
                 }else{
                     render(status: 403, contentType: "text/json", text: [status: "error", data: "", message: "Wrong password or email!"] as JSON)
