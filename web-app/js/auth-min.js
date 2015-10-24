@@ -34,9 +34,9 @@
                 $.ajax({
                     type: "GET",
                     url: 'api/auth/getSecret',
-                    headers: {'idUser': fromLocal.idUser, 'hash': hash},
+                    headers: {hash: hash},
                     success: function (data, statusText, xhr) {
-                        window.location.href = 'theme.html/#/theme';
+                        window.location.href = 'theme.html';
                     },
                     error: function (xhr, textStatus, error) {
                         window.location.href = '/';
@@ -64,17 +64,18 @@
                 },
                 statusCode: {
                     200: function (data, statusText, xhr) {
-                        alert(2);
                         var massege = $(".infoAuth");
                         massege.html('<p class="success">Акаунт створено!</p>');
                         massege.slideDown();
                     },
                     415: function (data, statusText, error) {
-                       alert(1);
-                      /*  var massege = $(".infoAuth");
-
-                        massege.html('<p class="error">' + statusText.responseJSON.message + '</p>');
-                        massege.slideDown();*/
+                        var arrayOfError = JSON.parse(data.getResponseHeader('error'));
+                        $(arrayOfError).each(function (k, v) {
+                            console.log(arrayOfError);
+                            var massege = $(".infoAuth");
+                            massege.html('<p class="error">' + v.message + '</p>');
+                            massege.slideDown();
+                        });
 
                     },
                     403: function (data, statusText, error) {
@@ -95,13 +96,14 @@
             $.ajax({
                 url: "api/auth/login",
                 type: "PUT",
-                data: {"email": obj.email, "password": obj.pass},
+                data: JSON.stringify({"email": obj.email, "password": obj.pass}),
+                contentType: "application/json",
                 statusCode: {
                     200: function (data, statusText, xhr) {
                         var values = JSON.parse(xhr.getResponseHeader('keys'));
-                        var name = values[2];
-                        localStorage['user'] = JSON.stringify({"idUser": values[0], "secret": values[1]});
-                        window.location.href = 'theme.html/#/theme';
+
+                        localStorage['user'] = JSON.stringify({"idUser": values.userId, "secret": values.secret});
+                        window.location.href = 'theme.html';
                     },
 
                     401: function (data, statusText, error) {
@@ -114,7 +116,7 @@
                         var arrayOfError = JSON.parse(data.getResponseHeader('error'));
                         $(arrayOfError).each(function (k, v) {
                             var massege = $(".infoAuth");
-                            massege.html('<p class="error">' + v + '</p>');
+                            massege.html('<p class="error">' + v.message + '</p>');
                             massege.slideDown();
                         });
                     }
