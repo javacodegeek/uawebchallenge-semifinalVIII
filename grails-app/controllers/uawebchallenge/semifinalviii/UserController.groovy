@@ -13,8 +13,14 @@ class UserController {
 
     def list() {
         def list = User.list()
+
+        def userList = []
+        list.each { u ->
+            userList << userService.buidUserLess(u)
+        }
+
         try {
-            render(status: 200, contentType: "text/json", text: [status: "success", data: list, message: ""] as JSON)
+            render(status: 200, contentType: "text/json", text: [status: "success", data: userList, message: ""] as JSON)
         }catch(Exception e) {
             render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
         }
