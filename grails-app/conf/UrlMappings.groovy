@@ -24,7 +24,11 @@ class UrlMappings {
         }
 
 
-        "/api/$apiVersion/signin"(controller: "user", action: "signin")
+
+
+        "/api/auth/registration"(controller: "auth", action: "signup")
+
+
 
 
 	}

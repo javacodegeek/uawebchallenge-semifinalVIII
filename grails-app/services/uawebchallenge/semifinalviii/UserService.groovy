@@ -11,7 +11,6 @@ class UserService {
         def user = User.findByEmail(email)
         if(user){
             if(user.password == password.encodeAsMD5().toString()){
-                println 788
                 return user
             }else {
                 return false

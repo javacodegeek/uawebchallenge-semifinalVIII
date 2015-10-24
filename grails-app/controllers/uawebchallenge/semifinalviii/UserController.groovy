@@ -97,15 +97,17 @@ class UserController {
     }
 
     def signin() {
-        try {
-            def params = request.JSON
+        render(status: 200, contentType: "text/json", text: [status: "success", data: "", message: "test"] as JSON)
 
+        /*try {
+            if(request.contentType == "application/json"){
+                def params = request.JSON
+            }
             if(params.email && params.password){
                 def signinUser = userService.signin(params.email, params.password)
                 if(signinUser) {
                     session.idKey = new Date().getTime().encodeAsMD5().toString()
                     session.user = signinUser
-
                     render(status: 200, contentType: "text/json", text: [status: "success", data: "", message: "User signin in system!"] as JSON)
                 }else{
                     render(status: 403, contentType: "text/json", text: [status: "error", data: "", message: "Wrong password or email!"] as JSON)
@@ -116,8 +118,16 @@ class UserController {
             }
 
         }catch(Exception e) {
-            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
-        }
+            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"] as JSON)
+        }*/
+    }
+
+    def signup(){
+        println params
+
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        render(status: 200, contentType: "text/json", text: [status: "success", data: "", message: "User signin in system!"] as JSON)
+
     }
 
 }

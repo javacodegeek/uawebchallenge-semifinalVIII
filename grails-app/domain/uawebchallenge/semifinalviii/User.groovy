@@ -7,8 +7,8 @@ class User {
     public static final  Integer STATUS_BLOCKED = 3
     public static final  Integer STATUS_DECLINE_CONFIRMATION_EMAIL = 4
 
-    public static final  Integer CATEGORY_PERSONAL = 1
-    public static final  Integer CATEGORY_organization = 2
+    public static final  Integer CATEGORY_INDIVIDUAL = 1
+    public static final  Integer CATEGORY_ENTITY = 2
 
 
     String name
