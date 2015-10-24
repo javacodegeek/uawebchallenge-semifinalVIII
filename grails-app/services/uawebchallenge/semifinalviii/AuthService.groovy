@@ -3,7 +3,7 @@ package uawebchallenge.semifinalviii
 import grails.transaction.Transactional
 
 @Transactional
-class AuthServerService {
+class AuthService {
 
     RegistrationService registrationService
 
