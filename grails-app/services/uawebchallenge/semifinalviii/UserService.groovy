@@ -7,20 +7,6 @@ import grails.converters.JSON
 @Transactional
 class UserService {
 
-    def signin(String email, String password) {
-        print 1231313
-        def user = User.findByEmail(email)
-        if(user){
-            if(user.password == password.encodeAsMD5().toString()){
-                return user
-            }else {
-                return false
-            }
-        }else {
-            return false
-        }
-    }
-
     def buidUserLess(User u){
         if(u instanceof User){
             def response = [:]
