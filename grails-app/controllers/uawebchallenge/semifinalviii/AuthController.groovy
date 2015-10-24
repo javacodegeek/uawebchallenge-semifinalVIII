@@ -31,19 +31,20 @@ class AuthController {
     }
 
     def signin() {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         def params = request.JSON
         try {
             if(params.email && params.password){
                 def signinUser = User.findByEmail(params.email)
                 if(signinUser) {
                     if(params.password.encodeAsMD5().toString() == signinUser.password){
-                        session.idKey = new Date().getTime().encodeAsMD5().toString()
+                        session.secret = new Date().getTime().encodeAsMD5().toString()
                         session.user = signinUser
 
                         response.setHeader("Access-Control-Expose-Headers", "keys");
                         response.setHeader("Access-Control-Allow-Origin", "*");
                         response.setHeader("Access-Control-Allow-Methods", "PUT");
-                        response.setHeader("keys",([userId: 21, secret: session.idKey] as JSON).toString());
+                        response.setHeader("keys",([userId: signinUser.id, secret: session.secret] as JSON).toString());
                         render(status: 200, contentType: "text/json", text: [status: "success", data: "", message: ""] as JSON)
                     }else{
                         response.setHeader("Access-Control-Expose-Headers", "error");
@@ -68,7 +69,21 @@ class AuthController {
             render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"] as JSON)
         }
 
+    }
 
+    def getSecret() {
+
+        if(response.getHeader("hash")){
+            def data = "" + session?.user?.id + session?.secret
+            if(data == response.getHeader("hash")){
+                render(status: 200, contentType: "text/json", text: [status: "success", data: "", message: "authentificate"] as JSON)
+
+            }else{
+                render(status: 403, contentType: "text/json", text: [status: "error", data: "", message: "wrong hash"] as JSON)
+            }
+        }else{
+            render(status: 403, contentType: "text/json", text: [status: "error", data: "", message: "need init header hash"] as JSON)
+        }
 
     }
 

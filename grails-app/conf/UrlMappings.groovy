@@ -7,7 +7,7 @@ class UrlMappings {
             }
         }
 
-       // "/"(view:"/index")
+       // "/"(redirect: "/theme.html/#/theme")
         "500"(view:'/error')
 
         def apiVersion = "v1"
@@ -26,8 +26,10 @@ class UrlMappings {
 
 
 
+
         "/api/auth/registration"(controller: "auth", action: "signup")
         "/api/auth/login"(controller: "auth", action: "signin")
+        "/api/auth/getSecret"(controller: "auth", action: "getSecret")
 
 
 
