@@ -8,6 +8,7 @@ import grails.converters.JSON
 class UserService {
 
     def signin(String email, String password) {
+        print 1231313
         def user = User.findByEmail(email)
         if(user){
             if(user.password == password.encodeAsMD5().toString()){
