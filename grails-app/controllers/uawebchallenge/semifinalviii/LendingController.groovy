@@ -31,7 +31,19 @@ class LendingController {
         }
     }
 
-    def show() { }
+    def show() {
+        try {
+            def lending = Lending.get(params.id)
+            if(lending){
+                render(status: 200, contentType: "text/json", text: [status: "success", data: lending, message: ""] as JSON)
+            } else {
+                render(status: 404, contentType: "text/json", text: [status: "error", date: "", message: "Lending not fount by id!"] as JSON)
+            }
+
+        }catch(Exception e) {
+            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
+        }
+    }
 
     def update() { }
 
