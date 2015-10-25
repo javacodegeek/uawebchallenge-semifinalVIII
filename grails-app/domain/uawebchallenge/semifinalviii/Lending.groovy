@@ -8,8 +8,8 @@ class Lending {
     String cssStyle
     String page
     String token
-    Date dateCreated
-    Date dateModified
+    Date dateCreated = new Date()
+    Date dateModified = new Date()
 
     static constraints = {
         userId(nullable: false, blank: false)
