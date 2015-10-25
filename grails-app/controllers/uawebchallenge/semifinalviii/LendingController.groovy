@@ -4,7 +4,15 @@ import grails.converters.JSON
 
 class LendingController {
 
-    def list() { }
+    def list() {
+        try {
+            def list = Lending.list()
+            render(status: 200, contentType: "text/json", text: [status: "success", data: list, message: ""] as JSON)
+        }catch (Exception e) {
+            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some error happened on server!"] as JSON)
+
+        }
+    }
 
     def save() {
         if(params.userId && params.name && params.token) {
