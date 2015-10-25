@@ -31,7 +31,8 @@ class UrlMappings {
         "/api/auth/login"(controller: "auth", action: "signin")
         "/api/auth/getSecret"(controller: "auth", action: "getSecret")
 
-        "/api/v1/getprojectmoney"(controller: "lending", action: "ubbProjectData")
+        "/api/$apiVersion/getprojectmoney"(controller: "lending", action: "ubbProjectData")
+        "/api/$apiVersion/lending/link"(controller: "lending", action: "getLink")
 
 
 

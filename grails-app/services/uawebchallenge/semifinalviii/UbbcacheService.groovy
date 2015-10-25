@@ -5,6 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class UbbcacheService {
 
+
     def set(String link, String data) {
         def ubbcache = Ubbcache.findByProjectLink(link)
         if(!ubbcache){

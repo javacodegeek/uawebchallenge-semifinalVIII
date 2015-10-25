@@ -87,6 +87,22 @@ class LendingController {
         }
     }
 
+
+    def getLink(){
+        if(params.lendingId) {
+            def lendinglink = lendingService.getLendingLink(params.lendingId.toInteger())
+
+            if(lendinglink){
+                render(status: 200, contentType: "text/json", text: [status: "success", data: lendinglink, message: ""] as JSON)
+            }else{
+                render(status: 400, contentType: "text/json", text: [status: "error", data: "", message: "wrong data"] as JSON)
+            }
+
+        }else{
+            render(status: 400, contentType: "text/json", text: [status: "error", data: "", message: "Not enough params!"] as JSON)
+        }
+    }
+
     def ubbProjectData(){
 
         if(params.url) {
