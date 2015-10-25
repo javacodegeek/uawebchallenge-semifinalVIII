@@ -15,6 +15,9 @@ class LendingController {
     }
 
     def save() {
+
+        def params = request.JSON
+
         if(params.userId && params.name) {
               def Lending = new Lending(userId: params.userId,
                                         name: params.name,
@@ -32,5 +35,17 @@ class LendingController {
 
     def update() { }
 
-    def delete() { }
+    def delete() {
+        try {
+            def lending = Lending.get(params.id)
+            if(lending){
+                lending.delete(flush: true)
+                render(status: 202, contentType: "text/json", text: [status: "success", data: "", message: "Lending deleted!"] as JSON)
+            } else {
+                render(status: 404, contentType: "text/json", text: [status: "error", data:"", message: "Lending not fount by id!"] as JSON)
+            }
+        }catch(Exception e) {
+            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
+        }
+    }
 }
