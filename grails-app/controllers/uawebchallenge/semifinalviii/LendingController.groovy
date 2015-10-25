@@ -1,8 +1,12 @@
 package uawebchallenge.semifinalviii
 
 import grails.converters.JSON
+import grails.util.Holders
+
 
 class LendingController {
+
+    LendingService lendingService
 
     def list() {
         try {
@@ -80,5 +84,22 @@ class LendingController {
         }catch(Exception e) {
             render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Some internal error happened on server!"])
         }
+    }
+
+    def ubbProjectData(){
+
+        if(params.url) {
+            def resp = lendingService.getPayNums(params.url)
+            if(resp){
+                render(status: 200, contentType: "text/json", text: [status: "success", data: resp, message: ""] as JSON)
+            }else{
+                render(status: 400, contentType: "text/json", text: [status: "error", data: "", message: "wrong data in request"] as JSON)
+            }
+
+        }else{
+            render(status: 400, contentType: "text/json", text: [status: "error", data: "", message: "Not enough params!"] as JSON)
+        }
+
+
     }
 }
