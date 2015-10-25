@@ -22,6 +22,10 @@ class UbbcacheService {
     def get(String link) {
         def ubbcache = Ubbcache.findByProjectLink(link)
         if(ubbcache){
+            def now = new Date().getTime()
+            if(ubbcache.expiry < (now - ubbcache.dateModified.getTime())){
+                return false
+            }
             return ubbcache?.data
         }else {
             return false

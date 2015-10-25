@@ -5,7 +5,7 @@ class Ubbcache {
     String name
     String projectLink
     String data
-    Integer expiry = 18000
+    Integer expiry = 18000000
     Date dateCreated = new Date()
     Date dateModified = new Date()
 
