@@ -8,8 +8,8 @@ class Lending {
     String cssStyle
     String page
     String token
-    Date dateCreated = new Date()
-    Date dateModified = new Date()
+    Date dateCreated
+    Date dateModified
 
     static constraints = {
         userId(nullable: false, blank: false)
@@ -30,7 +30,7 @@ class Lending {
         projectLink column: 'project_link'
         cssStyle column: 'css_style', sqlType: "Text"
         page column: 'page', sqlType: "Text"
-        token column: 'false'
+        token column: 'token'
         dateCreated column: 'date_created'
         dateModified column: 'date_modified'
     }
