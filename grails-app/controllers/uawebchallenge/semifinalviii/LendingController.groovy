@@ -15,7 +15,7 @@ class LendingController {
     }
 
     def save() {
-        if(params.userId && params.name && params.token) {
+        if(params.userId && params.name) {
               def Lending = new Lending(userId: params.userId,
                                         name: params.name,
                                         projectLink: params.projectLink,
