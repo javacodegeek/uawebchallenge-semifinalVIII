@@ -31,8 +31,8 @@ class Lending {
         name column: 'name'
         projectLink column: 'project_link'
         link column: 'link'
-        cssStyle column: 'css_style'
-        page column: 'page'
+        cssStyle column: 'css_style', sqlType: "Text"
+        page column: 'page', sqlType: "Text"
         token column: 'false'
         dateCreated column: 'date_created'
         dateModified column: 'date_modified'
