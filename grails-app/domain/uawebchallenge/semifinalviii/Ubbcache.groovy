@@ -11,7 +11,7 @@ class Ubbcache {
 
     static constraints = {
         name(nullable: false, blank: false)
-        projectLink(nullable: false, blank: false)
+        projectLink(nullable: false, blank: false, unique: true)
         data(nullable: true, blank: true)
         expiry(nullable: false, blank: false)
         dateCreated(nullable: false, blank: false)

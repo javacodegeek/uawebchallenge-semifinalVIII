@@ -7,6 +7,7 @@ import grails.util.Holders
 class LendingController {
 
     LendingService lendingService
+    UbbcacheService ubbcacheService
 
     def list() {
         try {
@@ -89,7 +90,13 @@ class LendingController {
     def ubbProjectData(){
 
         if(params.url) {
-            def resp = lendingService.getPayNums(params.url)
+
+            def resp = ubbcacheService.get(params.url)
+            if(!resp){
+                resp = lendingService.getPayNums(params.url)
+                ubbcacheService.set(params.url, (resp as JSON).toString())
+            }
+
             if(resp){
                 render(status: 200, contentType: "text/json", text: [status: "success", data: resp, message: ""] as JSON)
             }else{
