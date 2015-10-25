@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>API DOC</title>
+</head>
+<body>
+    <center>
+        <h1>Api documentation v1</h1>
+    </center>
+    <h1>Auth</h1>
+    <hr>
+    <b>name: </b><b>Registration</b><br>
+    <b>url: </b><i>/api/auth/registration</i><br>
+    <b>params: </b><i>name, email, password, confirmPassword, category</i><br>
+    <b>type: </b><i>JSON</i>
+    <b>method: </b><i>POST</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>Authentication:</b><br>
+    <b>url: </b><i>/api/auth/login</i><br>
+    <b>params: </b><i>email, password</i><br>
+    <b>method: </b><i>PUT</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>Check authorization:</b><br>
+    <b>url: </b><i>/api/auth/getSecret</i><br>
+    <b>headers: </b><i>hash</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>GET</i>
+    <br>
+    <br>
+    <br>
+    <h1>Lending</h1>
+    <hr>
+    <b>name: </b><b>Get link to lending</b><br>
+    <b>url: </b><i>/api/v1/lending/link</i><br>
+    <b>params: </b><i>lendingId</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>GET</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>Get data from UBB site by url</b><br>
+    <b>url: </b><i>/api/v1/getprojectmoney</i><br>
+    <b>params: </b><i>url</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>GET</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>Lending list</b><br>
+    <b>url: </b><i>/api/v1/lending</i><br>
+    <b>params: </b><i>url</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>GET</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>Create new lending</b><br>
+    <b>url: </b><i>/api/v1/lending</i><br>
+    <b>params: </b><i>url</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>POST</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>Lending show</b><br>
+    <b>url: </b><i>/api/v1/lending/:id</i><br>
+    <b>params: </b><i>id</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>GET</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>delete lending</b><br>
+    <b>url: </b><i>/api/v1/lending/:id</i><br>
+    <b>params: </b><i>id</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>DELETE</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>update lending</b><br>
+    <b>url: </b><i>/api/v1/lending/:id</i><br>
+    <b>params: </b><i>id</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>PUT</i>
+    <br>
+    <br>
+    <br>
+    <h1>User</h1>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>User list</b><br>
+    <b>url: </b><i>/api/v1/user</i><br>
+    <b>params: </b><i>url</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>GET</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>Create new user</b><br>
+    <b>url: </b><i>/api/v1/user</i><br>
+    <b>params: </b><i>url</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>POST</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>User show</b><br>
+    <b>url: </b><i>/api/v1/user/:id</i><br>
+    <b>params: </b><i>id</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>GET</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>delete user</b><br>
+    <b>url: </b><i>/api/v1/user/:id</i><br>
+    <b>params: </b><i>id</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>DELETE</i>
+    <br>
+    <br>
+    <br>
+    <b>name: </b><b>update user</b><br>
+    <b>url: </b><i>/api/v1/user/:id</i><br>
+    <b>params: </b><i>id</i><br>
+    <b>type: </b><i>JSON</i><br>
+    <b>method: </b><i>PUT</i>
+    <br>
+    <br>
+    <br>
+</body>
+</html>
