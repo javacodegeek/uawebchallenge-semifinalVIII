@@ -4,18 +4,16 @@ class Lending {
 
     Integer userId
     String name
-    String projectLink
     String link
     String cssStyle
     String page
     String token
-    Date dateCreated
-    Date dateModified
+    Date dateCreated = new Date()
+    Date dateModified = new Date()
 
     static constraints = {
         userId(nullable: false, blank: false)
         name(nullable: false, blank: false)
-        projectLink(nullable: true, blank: true)
         link(nullable: true, blank: true)
         cssStyle(nullable: true, blank: true)
         page(nullable: true, blank: true)
@@ -29,7 +27,6 @@ class Lending {
         version false
         userId column: 'user_id'
         name column: 'name'
-        projectLink column: 'project_link'
         link column: 'link'
         cssStyle column: 'css_style', sqlType: "Text"
         page column: 'page', sqlType: "Text"
