@@ -95,6 +95,7 @@ environments {
             baseUrl = "https://api.mailgun.net/v3"
             domain = "sandbox4187d4ec582545efad3ffd0949874165.mailgun.org"
         }
+        domain = "https://hidden-ridge-5214.herokuapp.com"
     }
 
     production {
