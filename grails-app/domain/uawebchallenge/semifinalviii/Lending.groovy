@@ -8,6 +8,7 @@ class Lending {
     String link
     String cssStyle
     String page
+    String token
     Date dateCreated
     Date dateModified
 
@@ -18,6 +19,7 @@ class Lending {
         link(nullable: true, blank: true)
         cssStyle(nullable: true, blank: true)
         page(nullable: true, blank: true)
+        token(nullable: false, blank: false)
         dateCreated(nullable: false, blank: false)
         dateModified(nullable: false, blank: false)
 
@@ -31,6 +33,7 @@ class Lending {
         link column: 'link'
         cssStyle column: 'css_style'
         page column: 'page'
+        token column: 'false'
         dateCreated column: 'date_created'
         dateModified column: 'date_modified'
     }
