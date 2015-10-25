@@ -21,9 +21,9 @@ class LendingController {
         if(params.userId && params.name) {
               def Lending = new Lending(userId: params.userId,
                                         name: params.name,
-                                        projectLink: params.projectLink,
-                                        cssStyle: params.cssStyle,
-                                        page: params.page,
+                                        projectLink: params?.projectLink,
+                                        cssStyle: params?.cssStyle,
+                                        page: params?.page,
                                         token: new Date().getTime().encodeAsMD5().toString()).save(flush: true, failOnError: true)
             render(status: 200, contentType: "text/json", text: [status: "success", data: Lending, message: ""] as JSON)
         }else{
@@ -45,7 +45,24 @@ class LendingController {
         }
     }
 
-    def update() { }
+    def update() {
+        try {
+            def lending = Lending.get(params.id)
+            if(lending){
+                if (request.JSON.name){ lending.name = request.JSON.name}
+                if (request.JSON.projectLink){ lending.name = request.JSON.projectLink}
+                if (request.JSON.cssStyle){ lending.name = request.JSON.cssStyle}
+                if (request.JSON.page){ lending.name = request.JSON.page}
+                lending.dateMofified = new Date()
+                lending.save(flush: true, failOnError: true)
+                render(status: 202, contentType: "text/json", text: [status: "success", data: user, message: "Lending updated!"] as JSON)
+            } else {
+                render(status: 404, contentType: "text/json", text: [status: "error", data: "", message: "Lending not fount by id!"] as JSON)
+            }
+        }catch(Exception e) {
+            render(status: 500, contentType: "text/json", text: [status: "error", data: "", message: "Lending internal error happened on server!"])
+        }
+    }
 
     def delete() {
         try {
