@@ -24,7 +24,9 @@ class LendingController {
                                         projectLink: params?.projectLink,
                                         cssStyle: params?.cssStyle,
                                         page: params?.page,
-                                        token: new Date().getTime().encodeAsMD5().toString()).save(flush: true, failOnError: true)
+                                        token: new Date().getTime().encodeAsMD5().toString(),
+                                        needMoney: params?.needMoney.toInteger(),
+                                        totalMoney: params?.totalMoney.toInteger(),).save(flush: true, failOnError: true)
             render(status: 200, contentType: "text/json", text: [status: "success", data: Lending, message: ""] as JSON)
         }else{
             render(status: 400, contentType: "text/json", text: [status: "error", data: "", message: "Not enough params!"] as JSON)
@@ -53,6 +55,8 @@ class LendingController {
                 if (request.JSON.projectLink){ lending.name = request.JSON.projectLink}
                 if (request.JSON.cssStyle){ lending.name = request.JSON.cssStyle}
                 if (request.JSON.page){ lending.name = request.JSON.page}
+                if (request.JSON.needMoney){ lending.name = request.JSON.needMoney.toInteger()}
+                if (request.JSON.totalMoney){ lending.name = request.JSON.totalMoney.toInteger()}
                 lending.dateMofified = new Date()
                 lending.save(flush: true, failOnError: true)
                 render(status: 202, contentType: "text/json", text: [status: "success", data: user, message: "Lending updated!"] as JSON)
